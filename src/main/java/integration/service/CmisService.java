@@ -1,11 +1,11 @@
 package integration.service;
 
+
+
 import java.io.*;
 import java.math.BigInteger;
 import java.util.*;
-
 import javax.annotation.PostConstruct;
-
 import integration.utility.Constants;
 import integration.utility.DirectoryTraverser;
 import integration.utility.HttpUtil;
@@ -32,6 +32,8 @@ import org.apache.chemistry.opencmis.commons.impl.dataobjects.ContentStreamImpl;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+
 
 @Service
 public class CmisService {
@@ -211,12 +213,9 @@ public class CmisService {
                 bos.write(buf,0,n);
 
             }
-
             bos.close();
             fos.close();
             in.close();
-
-
         } catch (RuntimeException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -229,20 +228,14 @@ public class CmisService {
 
 
     private Session getSession() {
-
         String serverUrl = alfrescoUrl + "/api/-default-/public/cmis/versions/1.0/atom";
-
         Map<String, String> parameter = new HashMap<String, String>();
-
         parameter.put(SessionParameter.USER, alfrescoUser);
         parameter.put(SessionParameter.PASSWORD, alfrescoPass);
-
         parameter.put(SessionParameter.BROWSER_URL, serverUrl);
         parameter.put(SessionParameter.BINDING_TYPE, BindingType.BROWSER.value());
-
         SessionFactory factory = SessionFactoryImpl.newInstance();
         session = factory.getRepositories(parameter).get(0).createSession();
-
         return session;
 
     }
